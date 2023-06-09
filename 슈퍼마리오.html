@@ -24,7 +24,7 @@
     <script>
         let wrapper;
         let mario;
-        let g=0.03; // 중력을 표현한 전역변수
+        let g=0.06; // 중력을 표현한 전역변수
         let flag=true;//루프 수행 여부를 결정짓는 논리값
         let brickArray=[];  //충돌체크를 반복문으로 처리하려면 벽돌은
                                     //배열에 들어있어야 한다..
@@ -48,6 +48,14 @@
                 mario.render();
             }
         }
+        
+        function jump(){
+            mario.velY=-4;
+        }
+
+        function moveX(n){
+            mario.velX=n;
+        }
 
         function init(){
             wrapper = document.getElementById("wrapper");
@@ -57,11 +65,24 @@
 
         $(function(){
             init();
-            setInterval("loop()",10);
+            setInterval("loop()",5);
 
-            $(document.body).on("keydown", function(){
-                flag=!flag;
+            $(document.body).on("keydown", function(e){
+                switch(e.keyCode){
+                    case 27:flag=!flag;break; //esc
+                    case 32:jump();break; //점프
+                    case 37:moveX(-3);break;//좌
+                    case 39:moveX(3);break;//우
+                }
             });
+
+            $(document.body).on("keyup", function(e){
+                switch(e.keyCode){
+                    case 37:moveX(0);break;//좌
+                    case 39:moveX(0);break;//우
+                }
+            });
+
         });
     </script>    
 </head>
