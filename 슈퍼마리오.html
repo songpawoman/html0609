@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슈퍼마리오</title>
+    <style>
+        body{margin:0px}
+
+        #wrapper{
+            width:1000px;
+            height:800px;
+            background: yellow;
+            margin: auto;
+            position: relative;
+        }
+    </style>
+    <script src="./GameObject.js"></script>
+    <script src="./Brick.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        let wrapper;
+
+        function createBrick(){
+            for(let i=0;i<25;i++){
+                //container, src, width, height,x,y,velX,velY
+                new Brick(wrapper, "./images/brick.png",40,40,i*40, 600, 0,0);
+            }
+        }
+
+        function init(){
+            wrapper = document.getElementById("wrapper");
+            createBrick();//벽돌 생성하기
+        }
+
+        $(function(){
+            init();
+        });
+    </script>    
+</head>
+<body>
+    <div id="wrapper"></div>
+</body>
+</html>
+
+
+
+
+
+
+

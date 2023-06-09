@@ -137,11 +137,43 @@
             }
         }
         
+        .container{
+            position: relative;
+            left:-1000px;
+            top:-500px;
+        }
+
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>    
     <script>
+        //username과 비번에 대한 유효성 체크 
+        function loginCheck(){
+            //문서내의 username  라는 요소... 
+            if($("input[name='username']").val()==""){
+                alert("사용자 이름을 입력세요");
+                $("input[name='username']").focus();
+            }else if($("input[name='password']").val().length<1 ){
+                alert("비밀번호를 입력하세요");
+                $("input[name='password']").focus();
+            }
+        }
+
+        function show(){
+            $("h2").show();
+        }
+
+        function hide(){
+            //document.querySelector("h2").style.display="none";
+            $("h2").hide();
+        }
+        
         //onLoad와 동일
         $(function(){
+            $(".container").animate({
+                left:"0px", 
+                top:"0px"
+            });
+
             /*
             let btn=document.getElementById("btn");
             btn.addEventListener("click", function(){
@@ -151,7 +183,8 @@
            //$누구(css선택자)를.어떻게할지()
            //결국 제이쿼리 사용목적은? 기존 js 코드의 단순화 
            $("#btn").click(function(){
-                alert("난 제이쿼리 클릭");
+                //alert("난 제이쿼리 클릭");
+                loginCheck();
            });        
 
         });
@@ -170,11 +203,11 @@
                 </div>
 
                 <div class="col">
-                    <a href="#" class="fb btn">
-                        <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+                    <a href="javascript:show()" class="fb btn">
+                        <i class="fa fa-facebook fa-fw"></i>제목보이기
                     </a>
-                    <a href="#" class="twitter btn">
-                        <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+                    <a href="javascript:hide()" class="twitter btn">
+                        <i class="fa fa-twitter fa-fw"></i> 제목감추기
                     </a>
                     <a href="#" class="google btn"><i class="fa fa-google fa-fw">
                         </i> Login with Google+
